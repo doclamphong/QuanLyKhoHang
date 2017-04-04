@@ -1,2 +1,3 @@
 E:\NGUYENHOANMTA\HKII 2016-2017\Thực-tập-nhóm_TH13\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
 E:\NGUYENHOANMTA\HocKyII\ThucTapNhom\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
+D:\github\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
