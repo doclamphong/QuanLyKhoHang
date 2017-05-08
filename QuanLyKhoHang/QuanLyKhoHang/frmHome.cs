@@ -119,6 +119,22 @@ namespace QuanLyKhoHang
                                          };
             }
         }
+        private void btnTimKiemNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhanVien.DataSource = from nv in db.NHANVIENs
+                                         where nv.tennhanvien.Contains(txtTimKiemNV.Text)
+                                         select new
+                                         {
+                                             id_nhanvien = nv.id_nhanvien,
+                                             tennhanvien = nv.tennhanvien,
+                                             diachi = nv.diachi,
+                                             taikhoan = nv.taikhoan,
+                                             matkhau = nv.matkhau
+                                         };
+            }
+        }
         //Xuất hàng
         public void LoadXuatHang()
         {
