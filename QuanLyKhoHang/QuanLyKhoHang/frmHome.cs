@@ -50,7 +50,17 @@ namespace QuanLyKhoHang
         {
             CheckTab();
         }
+        //Nhà cung cấp
 
+        public void LoadNhaCungCap()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs select ncc;
+            }
+        }
+
+        //Nhân viên
         public void LoadNhanVien()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
