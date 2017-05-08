@@ -51,7 +51,22 @@ namespace QuanLyKhoHang
             CheckTab();
         }
 
-      
+        public void LoadNhanVien()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhanVien.DataSource = from nv in db.NHANVIENs
+                                         where nv.id_loainv == 2
+                                         select new
+                                         {
+                                             id_nhanvien = nv.id_nhanvien,
+                                             tennhanvien = nv.tennhanvien,
+                                             diachi = nv.diachi,
+                                             taikhoan = nv.taikhoan,
+                                             matkhau = nv.matkhau
+                                         };
+            }
+        }
 
     }
 
