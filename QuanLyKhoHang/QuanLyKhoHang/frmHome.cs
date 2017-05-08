@@ -50,8 +50,48 @@ namespace QuanLyKhoHang
         {
             CheckTab();
         }
-
-        
+        //Sản phẩm
+        public void LoadSanPham()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                cbnNhaCC.DataSource = db.NHACUNGCAPs;
+                cbnNhaCC.DisplayMember = "tennhacungcap";
+                cbnNhaCC.ValueMember = "id_nhacungcap";
+                grvSanPham.DataSource = from sp in db.HANGHOAs
+                                        from ncc in db.NHACUNGCAPs
+                                        where sp.id_nhacungcap == ncc.id_nhacungcap
+                                        select new
+                                        {
+                                            id_sp = sp.id_hanghoa,
+                                            tensp = sp.tenhanghoa,
+                                            tenncc = ncc.tennhacungcap,
+                                            mota = sp.mota,
+                                            sluong = sp.soluongton,
+                                            dongia = sp.giaban,
+                                            donvt = sp.donvitinh
+                                        };
+            }
+        }
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvSanPham.DataSource = from sp in db.HANGHOAs
+                                        from ncc in db.NHACUNGCAPs
+                                        where sp.id_nhacungcap == ncc.id_nhacungcap && sp.tenhanghoa.Contains(txtTiemKiem.Text)
+                                        select new
+                                        {
+                                            id_sp = sp.id_hanghoa,
+                                            tensp = sp.tenhanghoa,
+                                            tenncc = ncc.tennhacungcap,
+                                            mota = sp.mota,
+                                            sluong = sp.soluongton,
+                                            dongia = sp.giaban,
+                                            donvt = sp.donvitinh
+                                        };
+            }
+        }
         //Nhà cung cấp
 
         public void LoadNhaCungCap()
