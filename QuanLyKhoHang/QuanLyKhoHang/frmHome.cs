@@ -50,6 +50,8 @@ namespace QuanLyKhoHang
         {
             CheckTab();
         }
+
+        
         //Nhà cung cấp
 
         public void LoadNhaCungCap()
