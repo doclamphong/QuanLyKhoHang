@@ -77,6 +77,26 @@ namespace QuanLyKhoHang
                                          };
             }
         }
+        //Xuất hàng
+        public void LoadXuatHang()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvXuatHang.DataSource = from xh in db.PHIEUXUATs
+                                         from nv in db.NHANVIENs
+                                         where xh.id_nhanvien == nv.id_nhanvien
+                                         select new
+                                         {
+                                             IDDONHANG = xh.id_phieuxuat,
+                                             TENKH = xh.TenKH,
+                                             SODT = xh.SoDT,
+                                             DIACHIKH = xh.DiaChiKH,
+                                             TENNV = nv.tennhanvien,
+                                             NGAYXUATHANG = xh.ngayxuat
+                                         };
+            }
+
+        }
 
     }
 
