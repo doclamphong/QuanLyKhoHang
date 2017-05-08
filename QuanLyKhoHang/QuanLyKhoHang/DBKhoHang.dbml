@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyKhoHang" Class="DBKhoHangDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=EliteBook\SQL2012;Initial Catalog=QuanLyKhoHang;Integrated Security=True" SettingsObjectName="QuanLyKhoHang.Properties.Settings" SettingsPropertyName="QuanLyKhoHangConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PHIEUXUAT" Member="PHIEUXUATs">
+    <Type Name="PHIEUXUAT">
+      <Column Name="id_phieuxuat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ngayxuat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="id_nhanvien" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChiKH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SoDT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="NHANVIEN_PHIEUXUAT" Member="NHANVIEN" ThisKey="id_nhanvien" OtherKey="id_nhanvien" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHIEUNHAP" Member="PHIEUNHAPs">
+    <Type Name="PHIEUNHAP">
+      <Column Name="id_phieunhap" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ngaynhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="id_nhacungcap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_nhanvien" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NHANVIEN_PHIEUNHAP" Member="NHANVIEN" ThisKey="id_nhanvien" OtherKey="id_nhanvien" Type="NHANVIEN" IsForeignKey="true" />
+      <Association Name="NHACUNGCAP_PHIEUNHAP" Member="NHACUNGCAP" ThisKey="id_nhacungcap" OtherKey="id_nhacungcap" Type="NHACUNGCAP" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
+    <Type Name="NHANVIEN">
+      <Column Name="id_nhanvien" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tennhanvien" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="taikhoan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id_loainv" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NHANVIEN_PHIEUXUAT" Member="PHIEUXUATs" ThisKey="id_nhanvien" OtherKey="id_nhanvien" Type="PHIEUXUAT" />
+      <Association Name="NHANVIEN_PHIEUNHAP" Member="PHIEUNHAPs" ThisKey="id_nhanvien" OtherKey="id_nhanvien" Type="PHIEUNHAP" />
+      <Association Name="LOAINHANVIEN_NHANVIEN" Member="LOAINHANVIEN" ThisKey="id_loainv" OtherKey="id_loainv" Type="LOAINHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHACUNGCAP" Member="NHACUNGCAPs">
+    <Type Name="NHACUNGCAP">
+      <Column Name="id_nhacungcap" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tennhacungcap" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="NHACUNGCAP_PHIEUNHAP" Member="PHIEUNHAPs" ThisKey="id_nhacungcap" OtherKey="id_nhacungcap" Type="PHIEUNHAP" />
+      <Association Name="NHACUNGCAP_HANGHOA" Member="HANGHOAs" ThisKey="id_nhacungcap" OtherKey="id_nhacungcap" Type="HANGHOA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAINHANVIEN" Member="LOAINHANVIENs">
+    <Type Name="LOAINHANVIEN">
+      <Column Name="id_loainv" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenloainv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="LOAINHANVIEN_NHANVIEN" Member="NHANVIENs" ThisKey="id_loainv" OtherKey="id_loainv" Type="NHANVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HANGHOA" Member="HANGHOAs">
+    <Type Name="HANGHOA">
+      <Column Name="id_hanghoa" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenhanghoa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="donvitinh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="id_nhacungcap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="giaban" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="soluongton" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="NHACUNGCAP_HANGHOA" Member="NHACUNGCAP" ThisKey="id_nhacungcap" OtherKey="id_nhacungcap" Type="NHACUNGCAP" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CT_PHIEUXUAT" Member="CT_PHIEUXUATs">
+    <Type Name="CT_PHIEUXUAT">
+      <Column Name="id_phieuxuat" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_hanghoa" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="soluongxuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CT_PHIEUNHAP" Member="CT_PHIEUNHAPs">
+    <Type Name="CT_PHIEUNHAP">
+      <Column Name="id_phieunhap" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_hanghoa" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="soluongnhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gianhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

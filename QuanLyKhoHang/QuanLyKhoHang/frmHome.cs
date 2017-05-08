@@ -17,24 +17,42 @@ namespace QuanLyKhoHang
             InitializeComponent();
         }
 
-        private void DangnhapMenuItem_Click(object sender, EventArgs e)
+        private void frmHome_Load(object sender, EventArgs e)
         {
-          
+            CheckTab();
+        }
+        public void CheckTab()
+        {
+            if (tabControl.SelectedIndex == 0)
+            {
+                LoadXuatHang();
+            }
+            else if (tabControl.SelectedIndex == 1)
+            {
+
+            }
+            else if (tabControl.SelectedIndex == 2)
+            {
+                LoadSanPham();
+
+            }
+            else if (tabControl.SelectedIndex == 3)
+            {
+                LoadNhaCungCap();
+            }
+            else if (tabControl.SelectedIndex == 4)
+            {
+                LoadNhanVien();
+            }
         }
 
-        private void NhaphangMenuItem_Click(object sender, EventArgs e)
+        private void tabControl_Click(object sender, EventArgs e)
         {
-
+            CheckTab();
         }
 
-        private void XuathangMenuItem_Click(object sender, EventArgs e)
-        {
+      
 
-        }
-
-        private void ThongkeMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }

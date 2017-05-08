@@ -1,3 +1,19 @@
 E:\NGUYENHOANMTA\HKII 2016-2017\Thực-tập-nhóm_TH13\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
 E:\NGUYENHOANMTA\HocKyII\ThucTapNhom\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
 D:\github\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe.config
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.exe
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\QuanLyKhoHang.pdb
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\EntityFramework.dll
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\EntityFramework.xml
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.csprojResolveAssemblyReference.cache
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.frmHome.resources
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.frmLogin.resources
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.frmNhapHang.resources
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.Properties.Resources.resources
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.csproj.GenerateResource.Cache
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.exe
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.pdb
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.frmXuatHang.resources
