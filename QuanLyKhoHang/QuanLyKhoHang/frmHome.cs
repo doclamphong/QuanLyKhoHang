@@ -135,6 +135,18 @@ namespace QuanLyKhoHang
                                          };
             }
         }
+		private void btnXoaNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
+                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
+                db.NHANVIENs.DeleteOnSubmit(nv);
+                db.SubmitChanges();
+                MessageBox.Show("Xóa Thành Công");
+            }
+            LoadNhanVien();
+        }
         //Xuất hàng
         public void LoadXuatHang()
         {
