@@ -101,6 +101,17 @@ namespace QuanLyKhoHang
                 grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs select ncc;
             }
         }
+        private void btnXoaNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value;
+                NHACUNGCAP nhacc = db.NHACUNGCAPs.Where(n => n.id_nhacungcap == id).SingleOrDefault();
+                db.NHACUNGCAPs.DeleteOnSubmit(nhacc);
+                db.SubmitChanges();
+            }
+            LoadNhaCungCap();
+        }
 
         //Nhân viên
         public void LoadNhanVien()
