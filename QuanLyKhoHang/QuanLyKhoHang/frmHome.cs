@@ -159,6 +159,32 @@ namespace QuanLyKhoHang
             LoadNhanVien();
         }
         //Xuất hàng
+        private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                txtIDHoaDon.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value.ToString();
+                txtTenKH.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["TENKH"].Value.ToString();
+                txtSoDT.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["SODT"].Value.ToString();
+                txtDiaChi.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["DIACHIKH"].Value.ToString();
+                DateTime dt = (DateTime)grvXuatHang.SelectedCells[0].OwningRow.Cells["NGAYXUATHANG"].Value;
+                dtpNgayXuat.Value = dt;
+                int id = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
+                grvCTXuatHang.DataSource = from xh in db.PHIEUXUATs
+                                           from sp in db.HANGHOAs
+                                           from ctpx in db.CT_PHIEUXUATs
+                                           where xh.id_phieuxuat == ctpx.id_phieuxuat && ctpx.id_hanghoa == sp.id_hanghoa && xh.id_phieuxuat == id
+                                           select new
+                                           {
+                                               IDSANPHAM = sp.id_hanghoa,
+                                               TENSANPHAM = sp.tenhanghoa,
+                                               SOLUONG = ctpx.soluongxuat,
+                                               DGIA = sp.giaban,
+                                               DVTINH = sp.donvitinh,
+                                               THANHTIEN = Convert.ToInt32(sp.giaban) * ctpx.soluongxuat
+                                           };
+            }
+        }
         public void LoadXuatHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
