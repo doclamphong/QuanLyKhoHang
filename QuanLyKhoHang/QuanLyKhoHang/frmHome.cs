@@ -114,6 +114,21 @@ namespace QuanLyKhoHang
         }
 
         //Nhân viên
+        private void btnSuaNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
+                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
+                nv.tennhanvien = txtTenNhanVien.Text;
+                nv.diachi = txtDiaChiNV.Text;
+                nv.taikhoan = txtTaiKhoan.Text;
+                nv.matkhau = txtMatKhau.Text;
+                db.SubmitChanges();
+                MessageBox.Show("Thành công");
+            }
+            LoadNhanVien();
+        }
         public void LoadNhanVien()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
