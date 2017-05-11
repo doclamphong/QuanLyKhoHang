@@ -292,7 +292,12 @@ namespace QuanLyKhoHang
             }
             LoadXuatHang();
         }
-      
+        private void grvCTXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtMSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value.ToString();
+            txtTSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["TENSANPHAM"].Value.ToString();
+            txtSoLuongMua.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["SOLUONG"].Value.ToString();
+        }
         public void LoadXuatHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
