@@ -272,6 +272,26 @@ namespace QuanLyKhoHang
             xuathang.ShowDialog();
 
         }
+        private void btnSuaHang_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int idPX = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
+                int idSP = (int)grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value;
+                CT_PHIEUXUAT ct = (from ctpx in db.CT_PHIEUXUATs where ctpx.id_hanghoa == idSP && ctpx.id_phieuxuat == idPX select ctpx).SingleOrDefault();
+                if (txtSoLuongMua.Text == "")
+                {
+                    ct.soluongxuat = 1;
+                }
+                else
+                {
+                    ct.soluongxuat = Convert.ToInt32(txtSoLuongMua.Text);
+                }
+                db.SubmitChanges();
+                MessageBox.Show("Sửa Thành Công .");
+            }
+            LoadXuatHang();
+        }
         public void LoadXuatHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
