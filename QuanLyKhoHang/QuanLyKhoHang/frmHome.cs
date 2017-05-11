@@ -234,6 +234,7 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
+        
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
