@@ -93,6 +93,20 @@ namespace QuanLyKhoHang
             }
         }
         //Nhà cung cấp
+        private void btnThemNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                NHACUNGCAP nhacc = new NHACUNGCAP();
+                nhacc.tennhacungcap = txtTenNCC.Text;
+                nhacc.diachi = txtDiaChiNCC.Text;
+                db.NHACUNGCAPs.InsertOnSubmit(nhacc);
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhaCungCap();
+        }
+
         private void btnSuaNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
