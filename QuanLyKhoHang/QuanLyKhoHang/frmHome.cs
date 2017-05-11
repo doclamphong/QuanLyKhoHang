@@ -51,6 +51,39 @@ namespace QuanLyKhoHang
             CheckTab();
         }
         //Sản phẩm
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                HANGHOA sp = new HANGHOA();
+                sp.tenhanghoa = txtTenSP.Text;
+                int id_ncc = (int)cbnNhaCC.SelectedValue;
+                sp.id_nhacungcap = id_ncc;
+                sp.mota = txtMota.Text;
+                sp.giaban = txtGiaBan.Text;
+                sp.donvitinh = txtDonVT.Text;
+                sp.soluongton = Convert.ToInt32(txtSoLuong.Text);
+                db.HANGHOAs.InsertOnSubmit(sp);
+                db.SubmitChanges();
+                MessageBox.Show("Thành công");
+            }
+            LoadSanPham();
+        }
+        private void txtSoLuong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtGiaBan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
         public void LoadSanPham()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -92,8 +125,36 @@ namespace QuanLyKhoHang
                                         };
             }
         }
-        //Nhà cung cấp
 
+
+        //Nhà cung cấp
+        private void btnThemNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                NHACUNGCAP nhacc = new NHACUNGCAP();
+                nhacc.tennhacungcap = txtTenNCC.Text;
+                nhacc.diachi = txtDiaChiNCC.Text;
+                db.NHACUNGCAPs.InsertOnSubmit(nhacc);
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhaCungCap();
+        }
+
+        private void btnSuaNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value;
+                NHACUNGCAP nhacc = db.NHACUNGCAPs.Where(n => n.id_nhacungcap == id).SingleOrDefault();
+                nhacc.tennhacungcap = txtTenNCC.Text;
+                nhacc.diachi = txtDiaChiNCC.Text;
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhaCungCap();
+        }
         public void LoadNhaCungCap()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -200,6 +261,38 @@ namespace QuanLyKhoHang
                                            };
             }
         }
+        private void btnThemHang_Click(object sender, EventArgs e)
+        {
+            int idDH;
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                idDH = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
+            }
+            frmXuatHang xuathang = new frmXuatHang(idDH);
+            xuathang.ShowDialog();
+
+        }
+        private void btnSuaHang_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int idPX = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
+                int idSP = (int)grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value;
+                CT_PHIEUXUAT ct = (from ctpx in db.CT_PHIEUXUATs where ctpx.id_hanghoa == idSP && ctpx.id_phieuxuat == idPX select ctpx).SingleOrDefault();
+                if (txtSoLuongMua.Text == "")
+                {
+                    ct.soluongxuat = 1;
+                }
+                else
+                {
+                    ct.soluongxuat = Convert.ToInt32(txtSoLuongMua.Text);
+                }
+                db.SubmitChanges();
+                MessageBox.Show("Sửa Thành Công .");
+            }
+            LoadXuatHang();
+        }
+      
         public void LoadXuatHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
