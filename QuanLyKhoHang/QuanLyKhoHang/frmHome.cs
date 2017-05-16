@@ -173,7 +173,10 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
-
+        private void btnThoatNCC_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         //Nhân viên
         private void btnSuaNV_Click(object sender, EventArgs e)
         {
@@ -206,6 +209,10 @@ namespace QuanLyKhoHang
                                          };
             }
         }
+        private void btnThoatNV_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void btnTimKiemNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -234,7 +241,22 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-        
+        private void btnThemNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                NHANVIEN nv = new NHANVIEN();
+                nv.tennhanvien = txtTenNhanVien.Text;
+                nv.diachi = txtDiaChiNV.Text;
+                nv.taikhoan = txtTaiKhoan.Text;
+                nv.matkhau = txtMatKhau.Text;
+                nv.id_loainv = 2;
+                db.NHANVIENs.InsertOnSubmit(nv);
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhanVien();
+        }
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -312,6 +334,18 @@ namespace QuanLyKhoHang
                 //grvCTXuatHang.DataSource = null;
             }
             LoadXuatHang();
+        }
+        private void btnThemHD_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+
+            }
+        }
+
+        private void btnTimHD_Click(object sender, EventArgs e)
+        {
+
         }
         public void LoadXuatHang()
         {
