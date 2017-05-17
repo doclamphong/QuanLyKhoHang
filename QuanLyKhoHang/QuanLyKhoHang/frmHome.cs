@@ -125,7 +125,18 @@ namespace QuanLyKhoHang
                                         };
             }
         }
-
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                string id = grvSanPham.SelectedCells[0].OwningRow.Cells["id_sp"].Value.ToString();
+                int idSP = Convert.ToInt32(id);
+                HANGHOA sp = db.HANGHOAs.Where(n => n.id_hanghoa == idSP).SingleOrDefault();
+                db.HANGHOAs.DeleteOnSubmit(sp);
+                db.SubmitChanges();
+            }
+            LoadSanPham();
+        }
 
         //Nhà cung cấp
         private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
