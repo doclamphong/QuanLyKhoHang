@@ -51,6 +51,7 @@ namespace QuanLyKhoHang
             CheckTab();
         }
         //Sản phẩm
+
         public void LoadSanPham()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
