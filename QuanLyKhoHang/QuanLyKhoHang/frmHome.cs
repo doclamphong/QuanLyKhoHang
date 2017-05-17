@@ -137,7 +137,41 @@ namespace QuanLyKhoHang
             }
             LoadSanPham();
         }
+        private void grvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                cbnNhaCC.DataSource = db.NHACUNGCAPs;
+                cbnNhaCC.DisplayMember = "tennhacungcap";
+                cbnNhaCC.ValueMember = "id_nhacungcap";
+                txtTenSP.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tensp"].Value.ToString();
+                cbnNhaCC.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tenncc"].Value.ToString();
+                txtMota.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value.ToString();
+                txtSoLuong.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value.ToString();
+                txtGiaBan.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value.ToString();
+                txtDonVT.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value.ToString();
 
+
+            }
+        }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvSanPham.SelectedCells[0].OwningRow.Cells["id_sp"].Value;
+                HANGHOA sp = db.HANGHOAs.Where(n => n.id_hanghoa == id).SingleOrDefault();
+                sp.tenhanghoa = txtTenSP.Text;
+                int id_ncc = (int)cbnNhaCC.SelectedValue;
+                sp.id_nhacungcap = id_ncc;
+                sp.mota = txtMota.Text;
+                sp.giaban = txtGiaBan.Text;
+                sp.donvitinh = txtDonVT.Text;
+                sp.soluongton = Convert.ToInt32(txtSoLuong.Text);
+                db.SubmitChanges();
+
+            }
+            LoadSanPham();
+        }
         //Nhà cung cấp
         private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
         {
