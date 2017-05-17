@@ -83,6 +83,23 @@ namespace QuanLyKhoHang
                 e.Handled = true;
             }
         }
+        private void grvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                cbnNhaCC.DataSource = db.NHACUNGCAPs;
+                cbnNhaCC.DisplayMember = "tennhacungcap";
+                cbnNhaCC.ValueMember = "id_nhacungcap";
+                txtTenSP.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tensp"].Value.ToString();
+                cbnNhaCC.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tenncc"].Value.ToString();
+                txtMota.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value.ToString();
+                txtSoLuong.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value.ToString();
+                txtGiaBan.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value.ToString();
+                txtDonVT.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value.ToString();
+
+
+            }
+        }
         public void LoadSanPham()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
