@@ -173,21 +173,6 @@ namespace QuanLyKhoHang
         }
 
         //Nhân viên
-        private void btnSuaNV_Click(object sender, EventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
-                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
-                nv.tennhanvien = txtTenNhanVien.Text;
-                nv.diachi = txtDiaChiNV.Text;
-                nv.taikhoan = txtTaiKhoan.Text;
-                nv.matkhau = txtMatKhau.Text;
-                db.SubmitChanges();
-                MessageBox.Show("Thành công");
-            }
-            LoadNhanVien();
-        }
         public void LoadNhanVien()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -204,6 +189,38 @@ namespace QuanLyKhoHang
                                          };
             }
         }
+        private void btnThemNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                NHANVIEN nv = new NHANVIEN();
+                nv.tennhanvien = txtTenNhanVien.Text;
+                nv.diachi = txtDiaChiNV.Text;
+                nv.taikhoan = txtTaiKhoan.Text;
+                nv.matkhau = txtMatKhau.Text;
+                nv.id_loainv = 2;
+                db.NHANVIENs.InsertOnSubmit(nv);
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhanVien();
+        }
+        private void btnSuaNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
+                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
+                nv.tennhanvien = txtTenNhanVien.Text;
+                nv.diachi = txtDiaChiNV.Text;
+                nv.taikhoan = txtTaiKhoan.Text;
+                nv.matkhau = txtMatKhau.Text;
+                db.SubmitChanges();
+                MessageBox.Show("Thành công");
+            }
+            LoadNhanVien();
+        }
+       
         private void btnTimKiemNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -232,6 +249,8 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
+
+        
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
