@@ -93,6 +93,13 @@ namespace QuanLyKhoHang
             }
         }
         //Nhà cung cấp
+        private void btnTimKiemNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs where ncc.tennhacungcap.Contains(txtTimKiemNCC.Text) select ncc;
+            }
+        }
         private void btnThemNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -106,7 +113,17 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
+        private void btnThoatNCC_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
+        private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtIDNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value.ToString();
+            txtTenNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["tennhacungcap"].Value.ToString();
+            txtDiaChiNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["diachi"].Value.ToString();
+        }
         private void btnSuaNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
