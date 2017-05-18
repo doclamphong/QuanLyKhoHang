@@ -334,24 +334,9 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-<<<<<<< HEAD
-        private void btnThemNV_Click(object sender, EventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                NHANVIEN nv = new NHANVIEN();
-                nv.tennhanvien = txtTenNhanVien.Text;
-                nv.diachi = txtDiaChiNV.Text;
-                nv.taikhoan = txtTaiKhoan.Text;
-                nv.matkhau = txtMatKhau.Text;
-                nv.id_loainv = 2;
-                db.NHANVIENs.InsertOnSubmit(nv);
-                db.SubmitChanges();
-                MessageBox.Show("Thành Công");
-            }
-            LoadNhanVien();
-        }
-<<<<<<< HEAD
+
+        
+
         private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -362,13 +347,10 @@ namespace QuanLyKhoHang
                 txtMatKhau.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["matkhau"].Value.ToString();
             }
         }
-=======
->>>>>>> refs/remotes/origin/master
-=======
 
        
 
->>>>>>> refs/remotes/origin/master
+
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
