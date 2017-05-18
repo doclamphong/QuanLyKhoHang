@@ -287,6 +287,7 @@ namespace QuanLyKhoHang
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> refs/remotes/origin/master
@@ -299,6 +300,11 @@ namespace QuanLyKhoHang
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 =======
+=======
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
 
   
 
@@ -458,6 +464,8 @@ namespace QuanLyKhoHang
             }
             LoadXuatHang();
         }
+<<<<<<< HEAD
+=======
         private void grvCTXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtMSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value.ToString();
@@ -492,7 +500,10 @@ namespace QuanLyKhoHang
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 =======
