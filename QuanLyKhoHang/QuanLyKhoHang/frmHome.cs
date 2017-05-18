@@ -315,6 +315,7 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
+<<<<<<< HEAD
         private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -325,6 +326,8 @@ namespace QuanLyKhoHang
                 txtMatKhau.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["matkhau"].Value.ToString();
             }
         }
+=======
+>>>>>>> refs/remotes/origin/master
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
