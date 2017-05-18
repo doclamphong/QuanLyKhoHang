@@ -347,7 +347,21 @@ namespace QuanLyKhoHang
             LoadNhanVien();
         }
 
+        
+
+        private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                txtTenNhanVien.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["tennhanvien"].Value.ToString();
+                txtDiaChiNV.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["diachinhanvien"].Value.ToString();
+                txtTaiKhoan.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["taikhoan"].Value.ToString();
+                txtMatKhau.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["matkhau"].Value.ToString();
+            }
+        }
+
        
+
 
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
