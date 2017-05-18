@@ -51,12 +51,7 @@ namespace QuanLyKhoHang
             CheckTab();
         }
         //Sản phẩm
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/master
         private void btnThem_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -82,10 +77,7 @@ namespace QuanLyKhoHang
                 e.Handled = true;
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
         private void txtGiaBan_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
@@ -93,7 +85,7 @@ namespace QuanLyKhoHang
                 e.Handled = true;
             }
         }
-<<<<<<< HEAD
+
         private void grvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -111,9 +103,7 @@ namespace QuanLyKhoHang
 
             }
         }
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
+
         public void LoadSanPham()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -167,23 +157,7 @@ namespace QuanLyKhoHang
             }
             LoadSanPham();
         }
-        private void grvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                cbnNhaCC.DataSource = db.NHACUNGCAPs;
-                cbnNhaCC.DisplayMember = "tennhacungcap";
-                cbnNhaCC.ValueMember = "id_nhacungcap";
-                txtTenSP.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tensp"].Value.ToString();
-                cbnNhaCC.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tenncc"].Value.ToString();
-                txtMota.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value.ToString();
-                txtSoLuong.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value.ToString();
-                txtGiaBan.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value.ToString();
-                txtDonVT.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value.ToString();
-
-
-            }
-        }
+        
         private void btnSua_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -203,17 +177,14 @@ namespace QuanLyKhoHang
             LoadSanPham();
         }
         //Nhà cung cấp
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
+
         private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtIDNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value.ToString();
             txtTenNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["tennhacungcap"].Value.ToString();
             txtDiaChiNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["diachi"].Value.ToString();
         }
->>>>>>> refs/remotes/origin/master
+
         private void btnTimKiemNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -221,7 +192,7 @@ namespace QuanLyKhoHang
                 grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs where ncc.tennhacungcap.Contains(txtTimKiemNCC.Text) select ncc;
             }
         }
->>>>>>> refs/remotes/origin/master
+
         private void btnThemNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -235,25 +206,15 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
         private void btnThoatNCC_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtIDNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value.ToString();
-            txtTenNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["tennhacungcap"].Value.ToString();
-            txtDiaChiNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["diachi"].Value.ToString();
-        }
-=======
 
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
+
+
         private void btnSuaNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -285,17 +246,9 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
 
-=======
-        private void btnThoatNCC_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
->>>>>>> refs/remotes/origin/master
+  
+
         //Nhân viên
         private void btnSuaNV_Click(object sender, EventArgs e)
         {
@@ -328,7 +281,7 @@ namespace QuanLyKhoHang
                                          };
             }
         }
-<<<<<<< HEAD
+
         private void btnThemNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -345,28 +298,14 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-        private void btnSuaNV_Click(object sender, EventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
-                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
-                nv.tennhanvien = txtTenNhanVien.Text;
-                nv.diachi = txtDiaChiNV.Text;
-                nv.taikhoan = txtTaiKhoan.Text;
-                nv.matkhau = txtMatKhau.Text;
-                db.SubmitChanges();
-                MessageBox.Show("Thành công");
-            }
-            LoadNhanVien();
-        }
        
-=======
+       
+
         private void btnThoatNV_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
->>>>>>> refs/remotes/origin/master
+
         private void btnTimKiemNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -395,27 +334,9 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-<<<<<<< HEAD
 
-        
-=======
-        private void btnThemNV_Click(object sender, EventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                NHANVIEN nv = new NHANVIEN();
-                nv.tennhanvien = txtTenNhanVien.Text;
-                nv.diachi = txtDiaChiNV.Text;
-                nv.taikhoan = txtTaiKhoan.Text;
-                nv.matkhau = txtMatKhau.Text;
-                nv.id_loainv = 2;
-                db.NHANVIENs.InsertOnSubmit(nv);
-                db.SubmitChanges();
-                MessageBox.Show("Thành Công");
-            }
-            LoadNhanVien();
-        }
->>>>>>> refs/remotes/origin/master
+       
+
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -443,10 +364,7 @@ namespace QuanLyKhoHang
                                            };
             }
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
+
         private void btnThemHang_Click(object sender, EventArgs e)
         {
             int idDH;
@@ -510,8 +428,7 @@ namespace QuanLyKhoHang
         {
 
         }
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
+
         public void LoadXuatHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
