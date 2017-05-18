@@ -86,6 +86,7 @@ namespace QuanLyKhoHang
             }
         }
 
+
         private void grvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -103,6 +104,7 @@ namespace QuanLyKhoHang
 
             }
         }
+
 
         public void LoadSanPham()
         {
@@ -145,6 +147,11 @@ namespace QuanLyKhoHang
                                         };
             }
         }
+
+
+
+        //Nhà cung cấp
+
         private void btnXoa_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -193,6 +200,8 @@ namespace QuanLyKhoHang
             }
         }
 
+
+
         private void btnThemNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -207,10 +216,13 @@ namespace QuanLyKhoHang
             LoadNhaCungCap();
         }
 
+
         private void btnThoatNCC_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+
 
 
 
@@ -247,7 +259,7 @@ namespace QuanLyKhoHang
             LoadNhaCungCap();
         }
 
-  
+
 
         //Nhân viên
         private void btnSuaNV_Click(object sender, EventArgs e)
@@ -396,6 +408,7 @@ namespace QuanLyKhoHang
             }
             LoadXuatHang();
         }
+
         private void grvCTXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtMSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value.ToString();
