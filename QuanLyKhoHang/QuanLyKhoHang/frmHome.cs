@@ -51,6 +51,12 @@ namespace QuanLyKhoHang
             CheckTab();
         }
         //Sản phẩm
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
         private void btnThem_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -84,6 +90,10 @@ namespace QuanLyKhoHang
                 e.Handled = true;
             }
         }
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
         public void LoadSanPham()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -125,9 +135,76 @@ namespace QuanLyKhoHang
                                         };
             }
         }
+<<<<<<< HEAD
 
 
         //Nhà cung cấp
+=======
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                string id = grvSanPham.SelectedCells[0].OwningRow.Cells["id_sp"].Value.ToString();
+                int idSP = Convert.ToInt32(id);
+                HANGHOA sp = db.HANGHOAs.Where(n => n.id_hanghoa == idSP).SingleOrDefault();
+                db.HANGHOAs.DeleteOnSubmit(sp);
+                db.SubmitChanges();
+            }
+            LoadSanPham();
+        }
+        private void grvSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                cbnNhaCC.DataSource = db.NHACUNGCAPs;
+                cbnNhaCC.DisplayMember = "tennhacungcap";
+                cbnNhaCC.ValueMember = "id_nhacungcap";
+                txtTenSP.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tensp"].Value.ToString();
+                cbnNhaCC.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["tenncc"].Value.ToString();
+                txtMota.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Mota"].Value.ToString();
+                txtSoLuong.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["sluong"].Value.ToString();
+                txtGiaBan.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["Dongia"].Value.ToString();
+                txtDonVT.Text = grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value == null ? null : grvSanPham.SelectedCells[0].OwningRow.Cells["donvt"].Value.ToString();
+
+
+            }
+        }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvSanPham.SelectedCells[0].OwningRow.Cells["id_sp"].Value;
+                HANGHOA sp = db.HANGHOAs.Where(n => n.id_hanghoa == id).SingleOrDefault();
+                sp.tenhanghoa = txtTenSP.Text;
+                int id_ncc = (int)cbnNhaCC.SelectedValue;
+                sp.id_nhacungcap = id_ncc;
+                sp.mota = txtMota.Text;
+                sp.giaban = txtGiaBan.Text;
+                sp.donvitinh = txtDonVT.Text;
+                sp.soluongton = Convert.ToInt32(txtSoLuong.Text);
+                db.SubmitChanges();
+
+            }
+            LoadSanPham();
+        }
+        //Nhà cung cấp
+<<<<<<< HEAD
+=======
+        private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtIDNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value.ToString();
+            txtTenNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["tennhacungcap"].Value.ToString();
+            txtDiaChiNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["diachi"].Value.ToString();
+        }
+>>>>>>> refs/remotes/origin/master
+        private void btnTimKiemNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs where ncc.tennhacungcap.Contains(txtTimKiemNCC.Text) select ncc;
+            }
+        }
+>>>>>>> refs/remotes/origin/master
         private void btnThemNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -141,7 +218,25 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+        private void btnThoatNCC_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtIDNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value.ToString();
+            txtTenNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["tennhacungcap"].Value.ToString();
+            txtDiaChiNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["diachi"].Value.ToString();
+        }
+=======
+
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
         private void btnSuaNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -173,10 +268,20 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
         private void btnThoatNCC_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
         //Nhân viên
         private void btnSuaNV_Click(object sender, EventArgs e)
         {
@@ -284,6 +389,11 @@ namespace QuanLyKhoHang
                                            };
             }
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
         private void btnThemHang_Click(object sender, EventArgs e)
         {
             int idDH;
@@ -347,6 +457,10 @@ namespace QuanLyKhoHang
         {
 
         }
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
         public void LoadXuatHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
