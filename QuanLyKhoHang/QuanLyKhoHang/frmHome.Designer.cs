@@ -102,11 +102,11 @@
             this.tabNhapHang = new System.Windows.Forms.TabPage();
             this.tabXuatHang = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtSoLuongMua = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTSP = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtMSP = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnXoaHang = new System.Windows.Forms.Button();
@@ -863,11 +863,11 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.txtSoLuongMua);
             this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.txtTSP);
             this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.txtMSP);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Location = new System.Drawing.Point(592, 6);
             this.groupBox4.Name = "groupBox4";
@@ -876,12 +876,12 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
             // 
-            // textBox4
+            // txtSoLuongMua
             // 
-            this.textBox4.Location = new System.Drawing.Point(131, 115);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 3;
+            this.txtSoLuongMua.Location = new System.Drawing.Point(131, 115);
+            this.txtSoLuongMua.Name = "txtSoLuongMua";
+            this.txtSoLuongMua.Size = new System.Drawing.Size(100, 20);
+            this.txtSoLuongMua.TabIndex = 3;
             // 
             // label22
             // 
@@ -892,12 +892,12 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "Số lượng :";
             // 
-            // textBox3
+            // txtTSP
             // 
-            this.textBox3.Location = new System.Drawing.Point(131, 73);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 3;
+            this.txtTSP.Location = new System.Drawing.Point(131, 73);
+            this.txtTSP.Name = "txtTSP";
+            this.txtTSP.Size = new System.Drawing.Size(100, 20);
+            this.txtTSP.TabIndex = 3;
             // 
             // label21
             // 
@@ -908,12 +908,12 @@
             this.label21.TabIndex = 0;
             this.label21.Text = "Tên sản phẩm :";
             // 
-            // textBox2
+            // txtMSP
             // 
-            this.textBox2.Location = new System.Drawing.Point(131, 31);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtMSP.Location = new System.Drawing.Point(131, 31);
+            this.txtMSP.Name = "txtMSP";
+            this.txtMSP.Size = new System.Drawing.Size(100, 20);
+            this.txtMSP.TabIndex = 3;
             // 
             // label20
             // 
@@ -1364,11 +1364,11 @@
         private System.Windows.Forms.Button btnTimHD;
         private System.Windows.Forms.Button btnThemHD;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtSoLuongMua;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTSP;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtMSP;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnXoaHang;
         private System.Windows.Forms.Button btnThemHang;
