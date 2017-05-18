@@ -287,12 +287,28 @@ namespace QuanLyKhoHang
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
+        private void btnThoatNCC_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 =======
+=======
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 
   
 
+>>>>>>> refs/remotes/origin/master
         //Nhân viên
         private void btnSuaNV_Click(object sender, EventArgs e)
         {
@@ -483,6 +499,11 @@ namespace QuanLyKhoHang
 
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 =======
