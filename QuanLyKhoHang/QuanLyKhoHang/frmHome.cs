@@ -572,7 +572,15 @@ namespace QuanLyKhoHang
         }
 
 
+<<<<<<< HEAD
 
+=======
+
+
+       
+
+
+>>>>>>> refs/remotes/origin/master
         private void btnCTPN_XoaHang_Click(object sender, EventArgs e)
         {
 
