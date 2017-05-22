@@ -97,7 +97,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSanPham_Thoat = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.tabNhapHang = new System.Windows.Forms.TabPage();
             this.txtNH_TimKiem = new System.Windows.Forms.TextBox();
@@ -110,7 +110,14 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.grvCHITIETNHAPHANG = new System.Windows.Forms.DataGridView();
+            this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTPN_GiaNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grvNhapHang = new System.Windows.Forms.DataGridView();
+            this.idPhieuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PN_NCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PN_NgayNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PN_NhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtCTNH_GiaNhap = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -169,13 +176,6 @@
             this.txtIDHoaDon = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTPN_GiaNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idPhieuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PN_NCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PN_NgayNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PN_NhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabNhanVien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNhanVien)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -638,7 +638,7 @@
             this.tabSanPham.Controls.Add(this.label1);
             this.tabSanPham.Controls.Add(this.btnXoa);
             this.tabSanPham.Controls.Add(this.btnThem);
-            this.tabSanPham.Controls.Add(this.button2);
+            this.tabSanPham.Controls.Add(this.btnSanPham_Thoat);
             this.tabSanPham.Controls.Add(this.btnSua);
             this.tabSanPham.Location = new System.Drawing.Point(4, 22);
             this.tabSanPham.Name = "tabSanPham";
@@ -849,14 +849,15 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // button2
+            // btnSanPham_Thoat
             // 
-            this.button2.Location = new System.Drawing.Point(673, 394);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Thoát";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSanPham_Thoat.Location = new System.Drawing.Point(673, 394);
+            this.btnSanPham_Thoat.Name = "btnSanPham_Thoat";
+            this.btnSanPham_Thoat.Size = new System.Drawing.Size(75, 23);
+            this.btnSanPham_Thoat.TabIndex = 0;
+            this.btnSanPham_Thoat.Text = "Thoát";
+            this.btnSanPham_Thoat.UseVisualStyleBackColor = true;
+            this.btnSanPham_Thoat.Click += new System.EventHandler(this.btnSanPham_Thoat_Click);
             // 
             // btnSua
             // 
@@ -983,6 +984,21 @@
             this.grvCHITIETNHAPHANG.TabIndex = 4;
             this.grvCHITIETNHAPHANG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvCHITIETNHAPHANG_CellClick);
             // 
+            // CTPN_TenSP
+            // 
+            this.CTPN_TenSP.HeaderText = "Tên sản phẩm";
+            this.CTPN_TenSP.Name = "CTPN_TenSP";
+            // 
+            // CTPN_SoLuong
+            // 
+            this.CTPN_SoLuong.HeaderText = "Số Lượng";
+            this.CTPN_SoLuong.Name = "CTPN_SoLuong";
+            // 
+            // CTPN_GiaNhap
+            // 
+            this.CTPN_GiaNhap.HeaderText = "Giá Nhập";
+            this.CTPN_GiaNhap.Name = "CTPN_GiaNhap";
+            // 
             // grvNhapHang
             // 
             this.grvNhapHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -996,6 +1012,30 @@
             this.grvNhapHang.Size = new System.Drawing.Size(468, 204);
             this.grvNhapHang.TabIndex = 3;
             this.grvNhapHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvNhapHang_CellClick);
+            // 
+            // idPhieuNhap
+            // 
+            this.idPhieuNhap.DataPropertyName = "idPhieuNhap";
+            this.idPhieuNhap.HeaderText = "ID";
+            this.idPhieuNhap.Name = "idPhieuNhap";
+            // 
+            // PN_NCC
+            // 
+            this.PN_NCC.DataPropertyName = "PN_NCC";
+            this.PN_NCC.HeaderText = "Nhà cung cấp";
+            this.PN_NCC.Name = "PN_NCC";
+            // 
+            // PN_NgayNhap
+            // 
+            this.PN_NgayNhap.DataPropertyName = "PN_NgayNhap";
+            this.PN_NgayNhap.HeaderText = "Ngày Nhập";
+            this.PN_NgayNhap.Name = "PN_NgayNhap";
+            // 
+            // PN_NhanVien
+            // 
+            this.PN_NhanVien.DataPropertyName = "PN_NhanVien";
+            this.PN_NhanVien.HeaderText = "Nhân viên";
+            this.PN_NhanVien.Name = "PN_NhanVien";
             // 
             // groupBox6
             // 
@@ -1529,45 +1569,6 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
             // 
-            // CTPN_TenSP
-            // 
-            this.CTPN_TenSP.HeaderText = "Tên sản phẩm";
-            this.CTPN_TenSP.Name = "CTPN_TenSP";
-            // 
-            // CTPN_SoLuong
-            // 
-            this.CTPN_SoLuong.HeaderText = "Số Lượng";
-            this.CTPN_SoLuong.Name = "CTPN_SoLuong";
-            // 
-            // CTPN_GiaNhap
-            // 
-            this.CTPN_GiaNhap.HeaderText = "Giá Nhập";
-            this.CTPN_GiaNhap.Name = "CTPN_GiaNhap";
-            // 
-            // idPhieuNhap
-            // 
-            this.idPhieuNhap.DataPropertyName = "idPhieuNhap";
-            this.idPhieuNhap.HeaderText = "ID";
-            this.idPhieuNhap.Name = "idPhieuNhap";
-            // 
-            // PN_NCC
-            // 
-            this.PN_NCC.DataPropertyName = "PN_NCC";
-            this.PN_NCC.HeaderText = "Nhà cung cấp";
-            this.PN_NCC.Name = "PN_NCC";
-            // 
-            // PN_NgayNhap
-            // 
-            this.PN_NgayNhap.DataPropertyName = "PN_NgayNhap";
-            this.PN_NgayNhap.HeaderText = "Ngày Nhập";
-            this.PN_NgayNhap.Name = "PN_NgayNhap";
-            // 
-            // PN_NhanVien
-            // 
-            this.PN_NhanVien.DataPropertyName = "PN_NhanVien";
-            this.PN_NhanVien.HeaderText = "Nhân viên";
-            this.PN_NhanVien.Name = "PN_NhanVien";
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1661,7 +1662,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSanPham_Thoat;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.TabPage tabNhapHang;
         private System.Windows.Forms.TabPage tabXuatHang;
