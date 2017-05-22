@@ -255,24 +255,9 @@ namespace QuanLyKhoHang
             LoadNhaCungCap();
         }
 
-
+        #region Nhân Viên Of Lê Kim Huệ
 
         //Nhân viên
-        private void btnSuaNV_Click(object sender, EventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
-                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
-                nv.tennhanvien = txtTenNhanVien.Text;
-                nv.diachi = txtDiaChiNV.Text;
-                nv.taikhoan = txtTaiKhoan.Text;
-                nv.matkhau = txtMatKhau.Text;
-                db.SubmitChanges();
-                MessageBox.Show("Thành công");
-            }
-            LoadNhanVien();
-        }
         public void LoadNhanVien()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -289,7 +274,16 @@ namespace QuanLyKhoHang
                                          };
             }
         }
-
+        private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                txtTenNhanVien.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["tennhanvien"].Value.ToString();
+                txtDiaChiNV.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["diachinhanvien"].Value.ToString();
+                txtTaiKhoan.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["taikhoan"].Value.ToString();
+                txtMatKhau.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["matkhau"].Value.ToString();
+            }
+        }
         private void btnThemNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -306,14 +300,33 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-
-
-
-        private void btnThoatNV_Click(object sender, EventArgs e)
+        private void btnSuaNV_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
+                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
+                nv.tennhanvien = txtTenNhanVien.Text;
+                nv.diachi = txtDiaChiNV.Text;
+                nv.taikhoan = txtTaiKhoan.Text;
+                nv.matkhau = txtMatKhau.Text;
+                db.SubmitChanges();
+                MessageBox.Show("Thành công");
+            }
+            LoadNhanVien();
         }
-
+        private void btnXoaNV_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
+                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
+                db.NHANVIENs.DeleteOnSubmit(nv);
+                db.SubmitChanges();
+                MessageBox.Show("Xóa Thành Công");
+            }
+            LoadNhanVien();
+        }
         private void btnTimKiemNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -330,28 +343,26 @@ namespace QuanLyKhoHang
                                          };
             }
         }
-        private void btnXoaNV_Click(object sender, EventArgs e)
+        private void btnThoatNV_Click(object sender, EventArgs e)
         {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                int id = (int)grvNhanVien.SelectedCells[0].OwningRow.Cells["id_nhanvien"].Value;
-                NHANVIEN nv = db.NHANVIENs.Where(n => n.id_nhanvien == id).SingleOrDefault();
-                db.NHANVIENs.DeleteOnSubmit(nv);
-                db.SubmitChanges();
-                MessageBox.Show("Xóa Thành Công");
-            }
-            LoadNhanVien();
+            Application.Exit();
         }
-        private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                txtTenNhanVien.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["tennhanvien"].Value.ToString();
-                txtDiaChiNV.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["diachinhanvien"].Value.ToString();
-                txtTaiKhoan.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["taikhoan"].Value.ToString();
-                txtMatKhau.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["matkhau"].Value.ToString();
-            }
-        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -504,11 +515,12 @@ namespace QuanLyKhoHang
                 int id = (int)grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value;
                 grvCHITIETNHAPHANG.DataSource = from ctnh in db.CT_PHIEUNHAPs
                                                 from sp in db.HANGHOAs
-                                                where ctnh.id_phieunhap == id && ctnh.id_hanghoa==sp.id_hanghoa
-                                                select new {
+                                                where ctnh.id_phieunhap == id && ctnh.id_hanghoa == sp.id_hanghoa
+                                                select new
+                                                {
                                                     CTPN_TenSP = sp.tenhanghoa,
-                                                     CTPN_SoLuong = ctnh.soluongnhap,
-                                                     CTPN_GiaNhap=ctnh.gianhap
+                                                    CTPN_SoLuong = ctnh.soluongnhap,
+                                                    CTPN_GiaNhap = ctnh.gianhap
                                                 };
             }
         }
@@ -521,7 +533,7 @@ namespace QuanLyKhoHang
         //Phiếuu nhập :
         private void btnPN_ThemHD_Click(object sender, EventArgs e)
         {
-            using(DBKhoHangDataContext db = new DBKhoHangDataContext())
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
                 PHIEUNHAP phieuNhap = new PHIEUNHAP();
                 phieuNhap.ngaynhap = dtpNhapHangNgayNhap.Value;
@@ -540,7 +552,7 @@ namespace QuanLyKhoHang
             {
                 int id = (int)grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value;
                 PHIEUNHAP _pn = db.PHIEUNHAPs.Where(n => n.id_phieunhap == id).SingleOrDefault();
-                _pn.id_nhacungcap =(int) cbbNhapHangNCC.SelectedValue;
+                _pn.id_nhacungcap = (int)cbbNhapHangNCC.SelectedValue;
                 _pn.id_nhanvien = (int)cbbNhapHangNV.SelectedValue;
                 _pn.ngaynhap = dtpNhapHangNgayNhap.Value;
                 db.SubmitChanges();
@@ -581,11 +593,14 @@ namespace QuanLyKhoHang
         }
 
 
+<<<<<<< HEAD
+=======
 
 
 
        
 
+>>>>>>> refs/remotes/origin/master
         private void btnCTPN_XoaHang_Click(object sender, EventArgs e)
         {
 
