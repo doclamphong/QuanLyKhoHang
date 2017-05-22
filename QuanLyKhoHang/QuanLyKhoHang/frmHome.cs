@@ -29,7 +29,7 @@ namespace QuanLyKhoHang
             }
             else if (tabControl.SelectedIndex == 1)
             {
-
+                LoadNhapHang();
             }
             else if (tabControl.SelectedIndex == 2)
             {
@@ -164,7 +164,7 @@ namespace QuanLyKhoHang
             }
             LoadSanPham();
         }
-        
+
         private void btnSua_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -310,8 +310,8 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-       
-       
+
+
 
         private void btnThoatNV_Click(object sender, EventArgs e)
         {
@@ -334,7 +334,7 @@ namespace QuanLyKhoHang
                                          };
             }
         }
-		private void btnXoaNV_Click(object sender, EventArgs e)
+        private void btnXoaNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
@@ -347,7 +347,7 @@ namespace QuanLyKhoHang
             LoadNhanVien();
         }
 
-        
+
 
         private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -360,7 +360,7 @@ namespace QuanLyKhoHang
             }
         }
 
-       
+
 
 
         //Xuất hàng
@@ -443,6 +443,7 @@ namespace QuanLyKhoHang
             }
             LoadXuatHang();
         }
+
         private void btnThemHD_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -475,6 +476,55 @@ namespace QuanLyKhoHang
             }
 
         }
+
+
+        #region Phieu nhap hang 
+
+        //Phiêu nhập
+        public void LoadNhapHang()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhapHang.DataSource = from pn in db.PHIEUNHAPs
+                                         from nv in db.NHANVIENs
+                                         from ncc in db.NHACUNGCAPs
+                                         where pn.id_nhacungcap == ncc.id_nhacungcap && pn.id_nhanvien == nv.id_nhanvien
+                                         select new
+                                         {
+                                             idPhieuNhap = pn.id_phieunhap,
+                                             PN_NCC = ncc.tennhacungcap,
+                                             PN_NhanVien = nv.tennhanvien,
+                                             PN_NgayNhap = pn.ngaynhap
+                                         };
+            }
+        }
+        private void grvNhapHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+
+                cbbNhapHangNCC.DataSource = db.NHACUNGCAPs;
+                cbbNhapHangNCC.DisplayMember = "tennhacungcap";
+                cbbNhapHangNCC.ValueMember = "id_nhacungcap";
+                cbbNhapHangNV.DataSource = db.NHANVIENs;
+                cbbNhapHangNV.DisplayMember = "tennhanvien";
+                cbbNhapHangNV.ValueMember = "id_nhanvien";
+                txtIDHDNHAP.Text = grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value.ToString();
+                cbbNhapHangNCC.Text = grvNhapHang.SelectedCells[0].OwningRow.Cells["PN_NCC"].Value.ToString();
+                DateTime dt = (DateTime)grvNhapHang.SelectedCells[0].OwningRow.Cells["PN_NgayNhap"].Value;
+                dtpNhapHangNgayNhap.Value = dt;
+                cbbNhapHangNV.Text = grvNhapHang.SelectedCells[0].OwningRow.Cells["PN_NhanVien"].Value.ToString();
+                int id = (int)grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value;
+                grvCHITIETNHAPHANG.DataSource = from ctnh in db.CT_PHIEUNHAPs where ctnh.id_phieunhap == id select ctnh;
+            }
+        }
+        private void grvCHITIETNHAPHANG_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        #endregion
+
 
     }
 
