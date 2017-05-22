@@ -164,7 +164,7 @@ namespace QuanLyKhoHang
             }
             LoadSanPham();
         }
-
+        
         private void btnSua_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -310,8 +310,8 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-
-
+       
+       
 
         private void btnThoatNV_Click(object sender, EventArgs e)
         {
@@ -334,7 +334,7 @@ namespace QuanLyKhoHang
                                          };
             }
         }
-        private void btnXoaNV_Click(object sender, EventArgs e)
+		private void btnXoaNV_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
@@ -347,7 +347,7 @@ namespace QuanLyKhoHang
             LoadNhanVien();
         }
 
-
+        
 
         private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -360,7 +360,7 @@ namespace QuanLyKhoHang
             }
         }
 
-
+       
 
 
         //Xuất hàng
