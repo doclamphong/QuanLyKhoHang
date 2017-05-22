@@ -100,15 +100,15 @@
             this.btnSanPham_Thoat = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.tabNhapHang = new System.Windows.Forms.TabPage();
-            this.txtNH_TimKiem = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtPN_TimKiem = new System.Windows.Forms.TextBox();
+            this.btnPN_Thoat = new System.Windows.Forms.Button();
+            this.btnCTPN_XoaHang = new System.Windows.Forms.Button();
+            this.btnPN_XoaHD = new System.Windows.Forms.Button();
+            this.btnCTPN_SuaHang = new System.Windows.Forms.Button();
+            this.btnCTPN_ThemHang = new System.Windows.Forms.Button();
+            this.btnPN_SuaHD = new System.Windows.Forms.Button();
+            this.btnPN_ThemHD = new System.Windows.Forms.Button();
+            this.btnTimKiemPN = new System.Windows.Forms.Button();
             this.grvCHITIETNHAPHANG = new System.Windows.Forms.DataGridView();
             this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,6 +176,12 @@
             this.txtIDHoaDon = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+<<<<<<< HEAD
+=======
+            this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTPN_GiaNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+>>>>>>> refs/remotes/origin/master
             this.tabNhanVien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNhanVien)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -871,15 +877,15 @@
             // 
             // tabNhapHang
             // 
-            this.tabNhapHang.Controls.Add(this.txtNH_TimKiem);
-            this.tabNhapHang.Controls.Add(this.button6);
-            this.tabNhapHang.Controls.Add(this.button9);
-            this.tabNhapHang.Controls.Add(this.button5);
-            this.tabNhapHang.Controls.Add(this.button8);
-            this.tabNhapHang.Controls.Add(this.button7);
-            this.tabNhapHang.Controls.Add(this.button4);
-            this.tabNhapHang.Controls.Add(this.button3);
-            this.tabNhapHang.Controls.Add(this.button1);
+            this.tabNhapHang.Controls.Add(this.txtPN_TimKiem);
+            this.tabNhapHang.Controls.Add(this.btnPN_Thoat);
+            this.tabNhapHang.Controls.Add(this.btnCTPN_XoaHang);
+            this.tabNhapHang.Controls.Add(this.btnPN_XoaHD);
+            this.tabNhapHang.Controls.Add(this.btnCTPN_SuaHang);
+            this.tabNhapHang.Controls.Add(this.btnCTPN_ThemHang);
+            this.tabNhapHang.Controls.Add(this.btnPN_SuaHD);
+            this.tabNhapHang.Controls.Add(this.btnPN_ThemHD);
+            this.tabNhapHang.Controls.Add(this.btnTimKiemPN);
             this.tabNhapHang.Controls.Add(this.grvCHITIETNHAPHANG);
             this.tabNhapHang.Controls.Add(this.grvNhapHang);
             this.tabNhapHang.Controls.Add(this.groupBox6);
@@ -892,84 +898,92 @@
             this.tabNhapHang.Text = "Nhập Hàng";
             this.tabNhapHang.UseVisualStyleBackColor = true;
             // 
-            // txtNH_TimKiem
+            // txtPN_TimKiem
             // 
-            this.txtNH_TimKiem.Location = new System.Drawing.Point(3, 438);
-            this.txtNH_TimKiem.Name = "txtNH_TimKiem";
-            this.txtNH_TimKiem.Size = new System.Drawing.Size(138, 20);
-            this.txtNH_TimKiem.TabIndex = 6;
+            this.txtPN_TimKiem.Location = new System.Drawing.Point(3, 438);
+            this.txtPN_TimKiem.Name = "txtPN_TimKiem";
+            this.txtPN_TimKiem.Size = new System.Drawing.Size(138, 20);
+            this.txtPN_TimKiem.TabIndex = 6;
             // 
-            // button6
+            // btnPN_Thoat
             // 
-            this.button6.Location = new System.Drawing.Point(839, 427);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(72, 31);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Thoát";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnPN_Thoat.Location = new System.Drawing.Point(839, 427);
+            this.btnPN_Thoat.Name = "btnPN_Thoat";
+            this.btnPN_Thoat.Size = new System.Drawing.Size(72, 31);
+            this.btnPN_Thoat.TabIndex = 5;
+            this.btnPN_Thoat.Text = "Thoát";
+            this.btnPN_Thoat.UseVisualStyleBackColor = true;
+            this.btnPN_Thoat.Click += new System.EventHandler(this.btnPN_Thoat_Click);
             // 
-            // button9
+            // btnCTPN_XoaHang
             // 
-            this.button9.Location = new System.Drawing.Point(725, 405);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(77, 31);
-            this.button9.TabIndex = 5;
-            this.button9.Text = "Xóa Hàng";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnCTPN_XoaHang.Location = new System.Drawing.Point(725, 405);
+            this.btnCTPN_XoaHang.Name = "btnCTPN_XoaHang";
+            this.btnCTPN_XoaHang.Size = new System.Drawing.Size(77, 31);
+            this.btnCTPN_XoaHang.TabIndex = 5;
+            this.btnCTPN_XoaHang.Text = "Xóa Hàng";
+            this.btnCTPN_XoaHang.UseVisualStyleBackColor = true;
+            this.btnCTPN_XoaHang.Click += new System.EventHandler(this.btnCTPN_XoaHang_Click);
             // 
-            // button5
+            // btnPN_XoaHD
             // 
-            this.button5.Location = new System.Drawing.Point(429, 427);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(77, 31);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Xóa HĐ";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnPN_XoaHD.Location = new System.Drawing.Point(429, 427);
+            this.btnPN_XoaHD.Name = "btnPN_XoaHD";
+            this.btnPN_XoaHD.Size = new System.Drawing.Size(77, 31);
+            this.btnPN_XoaHD.TabIndex = 5;
+            this.btnPN_XoaHD.Text = "Xóa HĐ";
+            this.btnPN_XoaHD.UseVisualStyleBackColor = true;
+            this.btnPN_XoaHD.Click += new System.EventHandler(this.btnPN_XoaHD_Click);
             // 
-            // button8
+            // btnCTPN_SuaHang
             // 
-            this.button8.Location = new System.Drawing.Point(642, 405);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(77, 31);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "Sửa Hàng";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnCTPN_SuaHang.Location = new System.Drawing.Point(642, 405);
+            this.btnCTPN_SuaHang.Name = "btnCTPN_SuaHang";
+            this.btnCTPN_SuaHang.Size = new System.Drawing.Size(77, 31);
+            this.btnCTPN_SuaHang.TabIndex = 5;
+            this.btnCTPN_SuaHang.Text = "Sửa Hàng";
+            this.btnCTPN_SuaHang.UseVisualStyleBackColor = true;
+            this.btnCTPN_SuaHang.Click += new System.EventHandler(this.btnCTPN_SuaHang_Click);
             // 
-            // button7
+            // btnCTPN_ThemHang
             // 
-            this.button7.Location = new System.Drawing.Point(559, 405);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(77, 31);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Thêm Hàng";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnCTPN_ThemHang.Location = new System.Drawing.Point(559, 405);
+            this.btnCTPN_ThemHang.Name = "btnCTPN_ThemHang";
+            this.btnCTPN_ThemHang.Size = new System.Drawing.Size(77, 31);
+            this.btnCTPN_ThemHang.TabIndex = 5;
+            this.btnCTPN_ThemHang.Text = "Thêm Hàng";
+            this.btnCTPN_ThemHang.UseVisualStyleBackColor = true;
+            this.btnCTPN_ThemHang.Click += new System.EventHandler(this.btnCTPN_ThemHang_Click);
             // 
-            // button4
+            // btnPN_SuaHD
             // 
-            this.button4.Location = new System.Drawing.Point(346, 427);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(77, 31);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Sửa HĐ";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnPN_SuaHD.Location = new System.Drawing.Point(346, 427);
+            this.btnPN_SuaHD.Name = "btnPN_SuaHD";
+            this.btnPN_SuaHD.Size = new System.Drawing.Size(77, 31);
+            this.btnPN_SuaHD.TabIndex = 5;
+            this.btnPN_SuaHD.Text = "Sửa HĐ";
+            this.btnPN_SuaHD.UseVisualStyleBackColor = true;
+            this.btnPN_SuaHD.Click += new System.EventHandler(this.btnPN_SuaHD_Click);
             // 
-            // button3
+            // btnPN_ThemHD
             // 
-            this.button3.Location = new System.Drawing.Point(263, 427);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(77, 31);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Thêm HĐ";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnPN_ThemHD.Location = new System.Drawing.Point(263, 427);
+            this.btnPN_ThemHD.Name = "btnPN_ThemHD";
+            this.btnPN_ThemHD.Size = new System.Drawing.Size(77, 31);
+            this.btnPN_ThemHD.TabIndex = 5;
+            this.btnPN_ThemHD.Text = "Thêm HĐ";
+            this.btnPN_ThemHD.UseVisualStyleBackColor = true;
+            this.btnPN_ThemHD.Click += new System.EventHandler(this.btnPN_ThemHD_Click);
             // 
-            // button1
+            // btnTimKiemPN
             // 
-            this.button1.Location = new System.Drawing.Point(147, 427);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 31);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Tìm kiếm ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTimKiemPN.Location = new System.Drawing.Point(147, 427);
+            this.btnTimKiemPN.Name = "btnTimKiemPN";
+            this.btnTimKiemPN.Size = new System.Drawing.Size(98, 31);
+            this.btnTimKiemPN.TabIndex = 5;
+            this.btnTimKiemPN.Text = "Tìm kiếm ";
+            this.btnTimKiemPN.UseVisualStyleBackColor = true;
+            this.btnTimKiemPN.Click += new System.EventHandler(this.btnTimKiemPN_Click);
             // 
             // grvCHITIETNHAPHANG
             // 
@@ -1058,6 +1072,7 @@
             this.txtCTNH_GiaNhap.Name = "txtCTNH_GiaNhap";
             this.txtCTNH_GiaNhap.Size = new System.Drawing.Size(101, 20);
             this.txtCTNH_GiaNhap.TabIndex = 1;
+            this.txtCTNH_GiaNhap.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label29
             // 
@@ -1074,6 +1089,7 @@
             this.txtCTNH_SoLuong.Name = "txtCTNH_SoLuong";
             this.txtCTNH_SoLuong.Size = new System.Drawing.Size(101, 20);
             this.txtCTNH_SoLuong.TabIndex = 1;
+            this.txtCTNH_SoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label28
             // 
@@ -1088,8 +1104,10 @@
             // 
             this.txtCTNH_TenSP.Location = new System.Drawing.Point(137, 35);
             this.txtCTNH_TenSP.Name = "txtCTNH_TenSP";
+            this.txtCTNH_TenSP.ReadOnly = true;
             this.txtCTNH_TenSP.Size = new System.Drawing.Size(187, 20);
             this.txtCTNH_TenSP.TabIndex = 1;
+            this.txtCTNH_TenSP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label27
             // 
@@ -1175,6 +1193,7 @@
             // 
             this.txtIDHDNHAP.Location = new System.Drawing.Point(125, 20);
             this.txtIDHDNHAP.Name = "txtIDHDNHAP";
+            this.txtIDHDNHAP.ReadOnly = true;
             this.txtIDHDNHAP.Size = new System.Drawing.Size(101, 20);
             this.txtIDHDNHAP.TabIndex = 1;
             this.txtIDHDNHAP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1569,6 +1588,27 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
             // 
+<<<<<<< HEAD
+=======
+            // CTPN_TenSP
+            // 
+            this.CTPN_TenSP.DataPropertyName = "CTPN_TenSP";
+            this.CTPN_TenSP.HeaderText = "Tên sản phẩm";
+            this.CTPN_TenSP.Name = "CTPN_TenSP";
+            // 
+            // CTPN_SoLuong
+            // 
+            this.CTPN_SoLuong.DataPropertyName = "CTPN_SoLuong";
+            this.CTPN_SoLuong.HeaderText = "Số Lượng";
+            this.CTPN_SoLuong.Name = "CTPN_SoLuong";
+            // 
+            // CTPN_GiaNhap
+            // 
+            this.CTPN_GiaNhap.DataPropertyName = "CTPN_GiaNhap";
+            this.CTPN_GiaNhap.HeaderText = "Giá Nhập";
+            this.CTPN_GiaNhap.Name = "CTPN_GiaNhap";
+            // 
+>>>>>>> refs/remotes/origin/master
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1748,22 +1788,22 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox cbbNhapHangNV;
-        private System.Windows.Forms.TextBox txtNH_TimKiem;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_TenSP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_SoLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_GiaNhap;
+        private System.Windows.Forms.TextBox txtPN_TimKiem;
+        private System.Windows.Forms.Button btnPN_Thoat;
+        private System.Windows.Forms.Button btnPN_XoaHD;
+        private System.Windows.Forms.Button btnPN_SuaHD;
+        private System.Windows.Forms.Button btnPN_ThemHD;
+        private System.Windows.Forms.Button btnTimKiemPN;
+        private System.Windows.Forms.Button btnCTPN_XoaHang;
+        private System.Windows.Forms.Button btnCTPN_SuaHang;
+        private System.Windows.Forms.Button btnCTPN_ThemHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn idPhieuNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn PN_NCC;
         private System.Windows.Forms.DataGridViewTextBoxColumn PN_NgayNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn PN_NhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_TenSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_SoLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_GiaNhap;
     }
 }
 

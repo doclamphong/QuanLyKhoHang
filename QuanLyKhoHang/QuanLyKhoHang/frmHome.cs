@@ -342,9 +342,6 @@ namespace QuanLyKhoHang
             }
             LoadNhanVien();
         }
-
-
-
         private void grvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -355,10 +352,6 @@ namespace QuanLyKhoHang
                 txtMatKhau.Text = grvNhanVien.SelectedCells[0].OwningRow.Cells["matkhau"].Value.ToString();
             }
         }
-
-
-
-
         //Xuất hàng
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -475,8 +468,6 @@ namespace QuanLyKhoHang
 
 
         #region Phieu nhap hang 
-
-        //Phiêu nhập
         public void LoadNhapHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -511,18 +502,101 @@ namespace QuanLyKhoHang
                 dtpNhapHangNgayNhap.Value = dt;
                 cbbNhapHangNV.Text = grvNhapHang.SelectedCells[0].OwningRow.Cells["PN_NhanVien"].Value.ToString();
                 int id = (int)grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value;
-                grvCHITIETNHAPHANG.DataSource = from ctnh in db.CT_PHIEUNHAPs where ctnh.id_phieunhap == id select ctnh;
+                grvCHITIETNHAPHANG.DataSource = from ctnh in db.CT_PHIEUNHAPs
+                                                from sp in db.HANGHOAs
+                                                where ctnh.id_phieunhap == id && ctnh.id_hanghoa==sp.id_hanghoa
+                                                select new {
+                                                    CTPN_TenSP = sp.tenhanghoa,
+                                                     CTPN_SoLuong = ctnh.soluongnhap,
+                                                     CTPN_GiaNhap=ctnh.gianhap
+                                                };
             }
         }
         private void grvCHITIETNHAPHANG_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            txtCTNH_TenSP.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_TenSP"].Value.ToString();
+            txtCTNH_SoLuong.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_SoLuong"].Value.ToString();
+            txtCTNH_GiaNhap.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_GiaNhap"].Value.ToString();
+        }
+        //Phiếuu nhập :
+        private void btnPN_ThemHD_Click(object sender, EventArgs e)
+        {
+            using(DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                PHIEUNHAP phieuNhap = new PHIEUNHAP();
+                phieuNhap.ngaynhap = dtpNhapHangNgayNhap.Value;
+                phieuNhap.id_nhacungcap = (int)cbbNhapHangNCC.SelectedValue;
+                phieuNhap.id_nhanvien = (int)cbbNhapHangNV.SelectedValue;
+                db.PHIEUNHAPs.InsertOnSubmit(phieuNhap);
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhapHang();
+        }
+
+        private void btnPN_SuaHD_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value;
+                PHIEUNHAP _pn = db.PHIEUNHAPs.Where(n => n.id_phieunhap == id).SingleOrDefault();
+                _pn.id_nhacungcap =(int) cbbNhapHangNCC.SelectedValue;
+                _pn.id_nhanvien = (int)cbbNhapHangNV.SelectedValue;
+                _pn.ngaynhap = dtpNhapHangNgayNhap.Value;
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhapHang();
+        }
+
+        private void btnPN_XoaHD_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int id = (int)grvNhapHang.SelectedCells[0].OwningRow.Cells["idPhieuNhap"].Value;
+                PHIEUNHAP _pn = db.PHIEUNHAPs.Where(n => n.id_phieunhap == id).SingleOrDefault();
+                var delete = from ctpn in db.CT_PHIEUNHAPs where ctpn.id_phieunhap == id select ctpn;
+                db.CT_PHIEUNHAPs.DeleteAllOnSubmit(delete);
+                db.SubmitChanges();
+                db.PHIEUNHAPs.DeleteOnSubmit(_pn);
+                db.SubmitChanges();
+                MessageBox.Show("Thành Công");
+            }
+            LoadNhapHang();
+        }
+        private void btnTimKiemPN_Click(object sender, EventArgs e)
+        {
+
+        }
+        //CT_Phiếu nhập : 
+
+        private void btnCTPN_ThemHang_Click(object sender, EventArgs e)
+        {
 
         }
 
+        private void btnCTPN_SuaHang_Click(object sender, EventArgs e)
+        {
+
+        }
+
+<<<<<<< HEAD
 
         #endregion
 
        
+=======
+        private void btnCTPN_XoaHang_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPN_Thoat_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion     
+>>>>>>> refs/remotes/origin/master
     }
 
 }
