@@ -51,7 +51,7 @@ namespace QuanLyKhoHang
             CheckTab();
         }
 
-        #region Sản phẩm 
+        #region Sản phẩm Of Văn Đại
         //Sản phẩm
         public void LoadSanPham()
         {
@@ -178,26 +178,21 @@ namespace QuanLyKhoHang
         }
         #endregion
 
-
+        #region Nhà cung cấp Of Nguyễn Trang
         //Nhà cung cấp
-
+        public void LoadNhaCungCap()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs select ncc;
+            }
+        }
         private void grvNhaCC_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtIDNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["id_nhacungcap"].Value.ToString();
             txtTenNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["tennhacungcap"].Value.ToString();
             txtDiaChiNCC.Text = grvNhaCC.SelectedCells[0].OwningRow.Cells["diachi"].Value.ToString();
         }
-
-        private void btnTimKiemNCC_Click(object sender, EventArgs e)
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs where ncc.tennhacungcap.Contains(txtTimKiemNCC.Text) select ncc;
-            }
-        }
-
-
-
         private void btnThemNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -211,18 +206,6 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
-
-
-        private void btnThoatNCC_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-
-
-
-
-
         private void btnSuaNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -236,13 +219,6 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
-        public void LoadNhaCungCap()
-        {
-            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
-            {
-                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs select ncc;
-            }
-        }
         private void btnXoaNCC_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
@@ -254,6 +230,21 @@ namespace QuanLyKhoHang
             }
             LoadNhaCungCap();
         }
+        private void btnTimKiemNCC_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvNhaCC.DataSource = from ncc in db.NHACUNGCAPs where ncc.tennhacungcap.Contains(txtTimKiemNCC.Text) select ncc;
+            }
+        }
+
+        private void btnThoatNCC_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
+        #endregion
 
         #region Nhân Viên Of Lê Kim Huệ
 
@@ -349,18 +340,6 @@ namespace QuanLyKhoHang
         }
 
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //Xuất hàng
@@ -591,12 +570,6 @@ namespace QuanLyKhoHang
         {
 
         }
-
-
-
-
-       
-
 
         private void btnCTPN_XoaHang_Click(object sender, EventArgs e)
         {
