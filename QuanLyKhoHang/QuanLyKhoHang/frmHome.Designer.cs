@@ -110,9 +110,6 @@
             this.btnPN_ThemHD = new System.Windows.Forms.Button();
             this.btnTimKiemPN = new System.Windows.Forms.Button();
             this.grvCHITIETNHAPHANG = new System.Windows.Forms.DataGridView();
-            this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTPN_GiaNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grvNhapHang = new System.Windows.Forms.DataGridView();
             this.idPhieuNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PN_NCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,11 +173,12 @@
             this.txtIDHoaDon = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-
+            this.id_SanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTPN_GiaNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtCTPN_IDSANPHAM = new System.Windows.Forms.TextBox();
             this.tabNhanVien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNhanVien)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -988,6 +986,7 @@
             // 
             this.grvCHITIETNHAPHANG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvCHITIETNHAPHANG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_SanPham,
             this.CTPN_TenSP,
             this.CTPN_SoLuong,
             this.CTPN_GiaNhap});
@@ -996,21 +995,6 @@
             this.grvCHITIETNHAPHANG.Size = new System.Drawing.Size(360, 204);
             this.grvCHITIETNHAPHANG.TabIndex = 4;
             this.grvCHITIETNHAPHANG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvCHITIETNHAPHANG_CellClick);
-            // 
-            // CTPN_TenSP
-            // 
-            this.CTPN_TenSP.HeaderText = "Tên sản phẩm";
-            this.CTPN_TenSP.Name = "CTPN_TenSP";
-            // 
-            // CTPN_SoLuong
-            // 
-            this.CTPN_SoLuong.HeaderText = "Số Lượng";
-            this.CTPN_SoLuong.Name = "CTPN_SoLuong";
-            // 
-            // CTPN_GiaNhap
-            // 
-            this.CTPN_GiaNhap.HeaderText = "Giá Nhập";
-            this.CTPN_GiaNhap.Name = "CTPN_GiaNhap";
             // 
             // grvNhapHang
             // 
@@ -1056,6 +1040,8 @@
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.txtCTNH_SoLuong);
             this.groupBox6.Controls.Add(this.label28);
+            this.groupBox6.Controls.Add(this.txtCTPN_IDSANPHAM);
+            this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.txtCTNH_TenSP);
             this.groupBox6.Controls.Add(this.label27);
             this.groupBox6.Location = new System.Drawing.Point(508, 6);
@@ -1101,7 +1087,7 @@
             // 
             // txtCTNH_TenSP
             // 
-            this.txtCTNH_TenSP.Location = new System.Drawing.Point(137, 35);
+            this.txtCTNH_TenSP.Location = new System.Drawing.Point(137, 47);
             this.txtCTNH_TenSP.Name = "txtCTNH_TenSP";
             this.txtCTNH_TenSP.ReadOnly = true;
             this.txtCTNH_TenSP.Size = new System.Drawing.Size(187, 20);
@@ -1111,7 +1097,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(33, 42);
+            this.label27.Location = new System.Drawing.Point(33, 54);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(81, 13);
             this.label27.TabIndex = 0;
@@ -1587,7 +1573,12 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
             // 
-
+            // id_SanPham
+            // 
+            this.id_SanPham.DataPropertyName = "id_SanPham";
+            this.id_SanPham.HeaderText = "Mã sản phẩm";
+            this.id_SanPham.Name = "id_SanPham";
+            // 
             // CTPN_TenSP
             // 
             this.CTPN_TenSP.DataPropertyName = "CTPN_TenSP";
@@ -1606,7 +1597,24 @@
             this.CTPN_GiaNhap.HeaderText = "Giá Nhập";
             this.CTPN_GiaNhap.Name = "CTPN_GiaNhap";
             // 
-
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(30, 22);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(73, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "ID sản phẩm :";
+            // 
+            // txtCTPN_IDSANPHAM
+            // 
+            this.txtCTPN_IDSANPHAM.Location = new System.Drawing.Point(134, 15);
+            this.txtCTPN_IDSANPHAM.Name = "txtCTPN_IDSANPHAM";
+            this.txtCTPN_IDSANPHAM.ReadOnly = true;
+            this.txtCTPN_IDSANPHAM.Size = new System.Drawing.Size(88, 20);
+            this.txtCTPN_IDSANPHAM.TabIndex = 1;
+            this.txtCTPN_IDSANPHAM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1799,9 +1807,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PN_NCC;
         private System.Windows.Forms.DataGridViewTextBoxColumn PN_NgayNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn PN_NhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_SanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_TenSP;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_SoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTPN_GiaNhap;
+        private System.Windows.Forms.TextBox txtCTPN_IDSANPHAM;
+        private System.Windows.Forms.Label label30;
     }
 }
 
