@@ -580,12 +580,12 @@ namespace QuanLyKhoHang
 
         }
 
-<<<<<<< HEAD
 
-        #endregion
+
+
 
        
-=======
+
         private void btnCTPN_XoaHang_Click(object sender, EventArgs e)
         {
 
@@ -596,7 +596,7 @@ namespace QuanLyKhoHang
 
         }
         #endregion     
->>>>>>> refs/remotes/origin/master
+
     }
 
 }
