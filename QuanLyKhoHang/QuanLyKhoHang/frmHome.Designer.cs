@@ -176,12 +176,11 @@
             this.txtIDHoaDon = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-<<<<<<< HEAD
-=======
+
             this.CTPN_TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTPN_SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTPN_GiaNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
->>>>>>> refs/remotes/origin/master
+
             this.tabNhanVien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvNhanVien)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -1588,8 +1587,7 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
             // 
-<<<<<<< HEAD
-=======
+
             // CTPN_TenSP
             // 
             this.CTPN_TenSP.DataPropertyName = "CTPN_TenSP";
@@ -1608,7 +1606,7 @@
             this.CTPN_GiaNhap.HeaderText = "Giá Nhập";
             this.CTPN_GiaNhap.Name = "CTPN_GiaNhap";
             // 
->>>>>>> refs/remotes/origin/master
+
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
