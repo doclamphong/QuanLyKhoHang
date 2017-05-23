@@ -341,7 +341,7 @@ namespace QuanLyKhoHang
 
         #endregion
 
-        #region
+        #region Xuất Hàng
         //Xuất hàng
         public void LoadXuatHang()
         {
@@ -551,10 +551,6 @@ namespace QuanLyKhoHang
             }
         }
         #endregion
-
-
-
-
 
         #region Phieu nhap hang 
         public void LoadNhapHang()
