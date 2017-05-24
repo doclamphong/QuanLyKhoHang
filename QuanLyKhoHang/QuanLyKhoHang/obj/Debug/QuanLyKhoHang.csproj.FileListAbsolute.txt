@@ -17,3 +17,4 @@ C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang
 C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.exe
 C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.pdb
 C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.frmXuatHang.resources
+C:\Users\NguyenHoanPC\Documents\GitHub\QuanLyKhoHang\QuanLyKhoHang\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.frmPN_ThemHang.resources
