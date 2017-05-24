@@ -14,6 +14,7 @@ namespace QuanLyKhoHang
     {
         public frmHome()
         {
+
             InitializeComponent();
         }
 
@@ -44,6 +45,8 @@ namespace QuanLyKhoHang
             {
                 LoadNhanVien();
             }
+
+
         }
 
         private void tabControl_Click(object sender, EventArgs e)
@@ -341,17 +344,44 @@ namespace QuanLyKhoHang
 
         #endregion
 
-
+        #region Xuất Hàng
         //Xuất hàng
+        public void LoadXuatHang()
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                cbbPX_NHANVIEN.DataSource = db.NHANVIENs;
+                cbbPX_NHANVIEN.DisplayMember = "tennhanvien";
+                cbbPX_NHANVIEN.ValueMember = "id_nhanvien";
+                grvXuatHang.DataSource = from xh in db.PHIEUXUATs
+                                         from nv in db.NHANVIENs
+                                         where xh.id_nhanvien == nv.id_nhanvien
+                                         select new
+                                         {
+                                             IDDONHANG = xh.id_phieuxuat,
+                                             TENKH = xh.TenKH,
+                                             SODT = xh.SoDT,
+                                             DIACHIKH = xh.DiaChiKH,
+                                             TENNV = nv.tennhanvien,
+                                             NGAYXUATHANG = xh.ngayxuat
+                                         };
+            }
+
+        }
+
         private void grvXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
+                cbbPX_NHANVIEN.DataSource = db.NHANVIENs;
+                cbbPX_NHANVIEN.DisplayMember = "tennhanvien";
+                cbbPX_NHANVIEN.ValueMember = "id_nhanvien";
                 txtIDHoaDon.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value.ToString();
                 txtTenKH.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["TENKH"].Value.ToString();
                 txtSoDT.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["SODT"].Value.ToString();
                 txtDiaChi.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["DIACHIKH"].Value.ToString();
                 DateTime dt = (DateTime)grvXuatHang.SelectedCells[0].OwningRow.Cells["NGAYXUATHANG"].Value;
+                cbbPX_NHANVIEN.Text = grvXuatHang.SelectedCells[0].OwningRow.Cells["TENNV"].Value.ToString();
                 dtpNgayXuat.Value = dt;
                 int id = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
                 grvCTXuatHang.DataSource = from xh in db.PHIEUXUATs
@@ -369,7 +399,13 @@ namespace QuanLyKhoHang
                                            };
             }
         }
-
+        private void grvCTXuatHang_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            txtMSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value.ToString();
+            txtTSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["TENSANPHAM"].Value.ToString();
+            txtSoLuongMua.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["SOLUONG"].Value.ToString();
+        }
+        //Chi Tiết Phiếu Xuất Hàng
         private void btnThemHang_Click(object sender, EventArgs e)
         {
             int idDH;
@@ -388,25 +424,30 @@ namespace QuanLyKhoHang
                 int idPX = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
                 int idSP = (int)grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value;
                 CT_PHIEUXUAT ct = (from ctpx in db.CT_PHIEUXUATs where ctpx.id_hanghoa == idSP && ctpx.id_phieuxuat == idPX select ctpx).SingleOrDefault();
+                HANGHOA sp = db.HANGHOAs.Single(n => n.id_hanghoa == idSP);
                 if (txtSoLuongMua.Text == "")
                 {
                     ct.soluongxuat = 1;
                 }
                 else
                 {
-                    ct.soluongxuat = Convert.ToInt32(txtSoLuongMua.Text);
+                    string a = txtSoLuongMua.Text;
+                    int sl = Convert.ToInt32(a);
+                    if (sl > sp.soluongton)
+                    {
+                        MessageBox.Show("Số lượng quá lớn so với lượng hàng còn");
+
+                    }
+                    else
+                    {
+                        ct.soluongxuat = sl;
+                        sp.soluongton -= sl;
+                        db.SubmitChanges();
+                        MessageBox.Show("Sửa Thành Công .");
+                    }
                 }
-                db.SubmitChanges();
-                MessageBox.Show("Sửa Thành Công .");
             }
             LoadXuatHang();
-        }
-
-        private void grvCTXuatHang_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtMSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["IDSANPHAM"].Value.ToString();
-            txtTSP.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["TENSANPHAM"].Value.ToString();
-            txtSoLuongMua.Text = grvCTXuatHang.SelectedCells[0].OwningRow.Cells["SOLUONG"].Value.ToString();
         }
         private void btnXoaHang_Click(object sender, EventArgs e)
         {
@@ -418,50 +459,113 @@ namespace QuanLyKhoHang
                 db.CT_PHIEUXUATs.DeleteOnSubmit(ct);
                 db.SubmitChanges();
                 MessageBox.Show("Xóa Thành Công");
-                //grvCTXuatHang.DataSource = null;
             }
             LoadXuatHang();
         }
-
+        //Phiếu Xuất Hàng
         private void btnThemHD_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
-
+                PHIEUXUAT px = new PHIEUXUAT();
+                px.ngayxuat = dtpNgayXuat.Value;
+                px.TenKH = txtTenKH.Text;
+                px.DiaChiKH = txtDiaChi.Text;
+                px.SoDT = txtSoDT.Text;
+                px.id_nhanvien = (int)cbbPX_NHANVIEN.SelectedValue;
+                db.PHIEUXUATs.InsertOnSubmit(px);
+                db.SubmitChanges();
+                MessageBox.Show("Thêm Thành Công ");
             }
+            LoadXuatHang();
         }
-
-        private void btnTimHD_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void LoadXuatHang()
+        private void btnSuaHD_Click(object sender, EventArgs e)
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
-                grvXuatHang.DataSource = from xh in db.PHIEUXUATs
-                                         from nv in db.NHANVIENs
-                                         where xh.id_nhanvien == nv.id_nhanvien
-                                         select new
-                                         {
-                                             IDDONHANG = xh.id_phieuxuat,
-                                             TENKH = xh.TenKH,
-                                             SODT = xh.SoDT,
-                                             DIACHIKH = xh.DiaChiKH,
-                                             TENNV = nv.tennhanvien,
-                                             NGAYXUATHANG = xh.ngayxuat
-                                         };
+                int idPX = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
+                PHIEUXUAT px = db.PHIEUXUATs.Where(n => n.id_phieuxuat == idPX).SingleOrDefault();
+                px.TenKH = txtTenKH.Text;
+                px.SoDT = txtSoDT.Text;
+                px.DiaChiKH = txtDiaChi.Text;
+                px.ngayxuat = dtpNgayXuat.Value;
+                px.id_nhanvien = (int)cbbPX_NHANVIEN.SelectedValue;
+                db.SubmitChanges();
             }
-
+            LoadXuatHang();
         }
+        private void btnXoaHD_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                int idPX = (int)grvXuatHang.SelectedCells[0].OwningRow.Cells["IDDONHANG"].Value;
+                PHIEUXUAT px = db.PHIEUXUATs.Where(n => n.id_phieuxuat == idPX).SingleOrDefault();
+                var delete = db.CT_PHIEUXUATs.Where(n => n.id_phieuxuat == idPX);
+                db.CT_PHIEUXUATs.DeleteAllOnSubmit(delete);
+                db.SubmitChanges();
+                db.PHIEUXUATs.DeleteOnSubmit(px);
+                db.SubmitChanges();
+            }
+            LoadXuatHang();
+        }
+        private void btnTimHD_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
 
+                int seach = txtPX_TimKiem.Text == "" ? 0 : Convert.ToInt32(txtPX_TimKiem.Text);
+
+                if (seach == 0)
+                {
+                    cbbPX_NHANVIEN.DataSource = db.NHANVIENs;
+                    cbbPX_NHANVIEN.DisplayMember = "tennhanvien";
+                    cbbPX_NHANVIEN.ValueMember = "id_nhanvien";
+                    grvXuatHang.DataSource = from xh in db.PHIEUXUATs
+                                             from nv in db.NHANVIENs
+                                             where xh.id_nhanvien == nv.id_nhanvien
+                                             select new
+                                             {
+                                                 IDDONHANG = xh.id_phieuxuat,
+                                                 TENKH = xh.TenKH,
+                                                 SODT = xh.SoDT,
+                                                 DIACHIKH = xh.DiaChiKH,
+                                                 TENNV = nv.tennhanvien,
+                                                 NGAYXUATHANG = xh.ngayxuat
+                                             };
+                }
+                else
+                {
+                    cbbPX_NHANVIEN.DataSource = db.NHANVIENs;
+                    cbbPX_NHANVIEN.DisplayMember = "tennhanvien";
+                    cbbPX_NHANVIEN.ValueMember = "id_nhanvien";
+                    grvXuatHang.DataSource = from xh in db.PHIEUXUATs
+                                             from nv in db.NHANVIENs
+                                             where xh.id_nhanvien == nv.id_nhanvien && xh.id_phieuxuat == seach
+                                             select new
+                                             {
+                                                 IDDONHANG = xh.id_phieuxuat,
+                                                 TENKH = xh.TenKH,
+                                                 SODT = xh.SoDT,
+                                                 DIACHIKH = xh.DiaChiKH,
+                                                 TENNV = nv.tennhanvien,
+                                                 NGAYXUATHANG = xh.ngayxuat
+                                             };
+                }
+            }
+        }
+        #endregion
 
         #region Phieu nhap hang 
         public void LoadNhapHang()
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
+                cbbNhapHangNCC.DataSource = db.NHACUNGCAPs;
+                cbbNhapHangNCC.DisplayMember = "tennhacungcap";
+                cbbNhapHangNCC.ValueMember = "id_nhacungcap";
+                cbbNhapHangNV.DataSource = db.NHANVIENs;
+                cbbNhapHangNV.DisplayMember = "tennhanvien";
+                cbbNhapHangNV.ValueMember = "id_nhanvien";
                 grvNhapHang.DataSource = from pn in db.PHIEUNHAPs
                                          from nv in db.NHANVIENs
                                          from ncc in db.NHACUNGCAPs
@@ -509,7 +613,7 @@ namespace QuanLyKhoHang
             txtCTPN_IDSANPHAM.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["id_SanPham"].Value.ToString();
             txtCTNH_TenSP.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_TenSP"].Value.ToString();
             txtCTNH_SoLuong.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_SoLuong"].Value.ToString();
-            txtCTNH_GiaNhap.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_GiaNhap"].Value.ToString();
+            txtCTNH_GiaNhap.Text = grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_GiaNhap"].Value == null ? "1000" : grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["CTPN_GiaNhap"].Value.ToString();
         }
         //Phiếuu nhập :
         private void btnPN_ThemHD_Click(object sender, EventArgs e)
@@ -561,9 +665,9 @@ namespace QuanLyKhoHang
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
-                
+
                 int seach = txtPN_TimKiem.Text == "" ? 0 : Convert.ToInt32(txtPN_TimKiem.Text);
-                
+
                 if (seach == 0)
                 {
                     grvNhapHang.DataSource = from pn in db.PHIEUNHAPs
@@ -634,7 +738,7 @@ namespace QuanLyKhoHang
                 int idSP = (int)grvCHITIETNHAPHANG.SelectedCells[0].OwningRow.Cells["id_SanPham"].Value;
                 CT_PHIEUNHAP ctpn = db.CT_PHIEUNHAPs.Where(n => n.id_phieunhap == idPN && n.id_hanghoa == idSP).SingleOrDefault();
                 int sl = Convert.ToInt32(txtCTNH_SoLuong.Text);
-                HANGHOA sp = db.HANGHOAs.Single(n => n.id_hanghoa == idSP); 
+                HANGHOA sp = db.HANGHOAs.Single(n => n.id_hanghoa == idSP);
                 sp.soluongton -= sl;
                 db.CT_PHIEUNHAPs.DeleteOnSubmit(ctpn);
                 db.SubmitChanges();
@@ -646,8 +750,57 @@ namespace QuanLyKhoHang
         {
             Application.Exit();
         }
-        #endregion     
+
+
+        #endregion
+
+        private void btnTK_SanPhamBanChay_Click(object sender, EventArgs e)
+        {
+            grvTK_SPBanChay.Visible = true;
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvTK_SPBanChay.DataSource = from sp in db.HANGHOAs
+                                             join ctbh in db.CT_PHIEUXUATs
+                                             on sp.id_hanghoa equals ctbh.id_hanghoa
+                                             join bh in db.PHIEUXUATs on ctbh.id_phieuxuat equals bh.id_phieuxuat
+                                             where bh.ngayxuat >= dtpTK_NgayBatDau.Value && bh.ngayxuat <= dtp_NgayKetThuc.Value
+                                             group ctbh by new { ctbh.id_hanghoa, sp.tenhanghoa } into OD
+                                             select new
+                                             {
+                                                 ID_Product = OD.Key.id_hanghoa,
+                                                 Name_Product = OD.Key.tenhanghoa,
+                                                 Quantity = OD.Sum(n => n.soluongxuat)
+                                             } into ODD
+                                             orderby ODD.Quantity descending
+                                             select ODD;
+                // grvTK_SPBanChay.DataSource = rs;
+
+            }
+        }
+
+        private void btnTK_DoanhThu_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                var rs = from ctpx in db.CT_PHIEUXUATs
+                         join px in db.PHIEUXUATs on ctpx.id_phieuxuat equals px.id_phieuxuat
+                         join sp in db.HANGHOAs on ctpx.id_hanghoa equals sp.id_hanghoa
+                         where px.ngayxuat >= dtpTK_NgayBatDau.Value && px.ngayxuat <= dtp_NgayKetThuc.Value
+                         select new
+                         {
+                             ThanhTien = ctpx.soluongxuat * Convert.ToInt32(sp.giaban)
+                         } into OD
+                         group OD by OD.ThanhTien into TEMP
+                         select new { Total = TEMP.Sum(n => n.ThanhTien) };
+                foreach (var item in rs)
+                {
+                    lbTongDoanhThu.Text = item.ToString();
+                }
+
+            }
+        }
 
     }
-
 }
+
+
