@@ -14,6 +14,7 @@ namespace QuanLyKhoHang
     {
         public frmHome()
         {
+
             InitializeComponent();
         }
 
@@ -44,6 +45,8 @@ namespace QuanLyKhoHang
             {
                 LoadNhanVien();
             }
+
+
         }
 
         private void tabControl_Click(object sender, EventArgs e)
@@ -537,7 +540,7 @@ namespace QuanLyKhoHang
                     cbbPX_NHANVIEN.ValueMember = "id_nhanvien";
                     grvXuatHang.DataSource = from xh in db.PHIEUXUATs
                                              from nv in db.NHANVIENs
-                                             where xh.id_nhanvien == nv.id_nhanvien && xh.id_phieuxuat==seach
+                                             where xh.id_nhanvien == nv.id_nhanvien && xh.id_phieuxuat == seach
                                              select new
                                              {
                                                  IDDONHANG = xh.id_phieuxuat,
@@ -557,6 +560,12 @@ namespace QuanLyKhoHang
         {
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
+                cbbNhapHangNCC.DataSource = db.NHACUNGCAPs;
+                cbbNhapHangNCC.DisplayMember = "tennhacungcap";
+                cbbNhapHangNCC.ValueMember = "id_nhacungcap";
+                cbbNhapHangNV.DataSource = db.NHANVIENs;
+                cbbNhapHangNV.DisplayMember = "tennhanvien";
+                cbbNhapHangNV.ValueMember = "id_nhanvien";
                 grvNhapHang.DataSource = from pn in db.PHIEUNHAPs
                                          from nv in db.NHANVIENs
                                          from ncc in db.NHACUNGCAPs
@@ -742,9 +751,56 @@ namespace QuanLyKhoHang
             Application.Exit();
         }
 
+
         #endregion
 
+        private void btnTK_SanPhamBanChay_Click(object sender, EventArgs e)
+        {
+            grvTK_SPBanChay.Visible = true;
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                grvTK_SPBanChay.DataSource = from sp in db.HANGHOAs
+                                             join ctbh in db.CT_PHIEUXUATs
+                                             on sp.id_hanghoa equals ctbh.id_hanghoa
+                                             join bh in db.PHIEUXUATs on ctbh.id_phieuxuat equals bh.id_phieuxuat
+                                             where bh.ngayxuat >= dtpTK_NgayBatDau.Value && bh.ngayxuat <= dtp_NgayKetThuc.Value
+                                             group ctbh by new { ctbh.id_hanghoa, sp.tenhanghoa } into OD
+                                             select new
+                                             {
+                                                 ID_Product = OD.Key.id_hanghoa,
+                                                 Name_Product = OD.Key.tenhanghoa,
+                                                 Quantity = OD.Sum(n => n.soluongxuat)
+                                             } into ODD
+                                             orderby ODD.Quantity descending
+                                             select ODD;
+                // grvTK_SPBanChay.DataSource = rs;
+
+            }
+        }
+
+        private void btnTK_DoanhThu_Click(object sender, EventArgs e)
+        {
+            using (DBKhoHangDataContext db = new DBKhoHangDataContext())
+            {
+                var rs = from ctpx in db.CT_PHIEUXUATs
+                         join px in db.PHIEUXUATs on ctpx.id_phieuxuat equals px.id_phieuxuat
+                         join sp in db.HANGHOAs on ctpx.id_hanghoa equals sp.id_hanghoa
+                         where px.ngayxuat >= dtpTK_NgayBatDau.Value && px.ngayxuat <= dtp_NgayKetThuc.Value
+                         select new
+                         {
+                             ThanhTien = ctpx.soluongxuat * Convert.ToInt32(sp.giaban)
+                         } into OD
+                         group OD by OD.ThanhTien into TEMP
+                         select new { Total = TEMP.Sum(n => n.ThanhTien) };
+                foreach (var item in rs)
+                {
+                    lbTongDoanhThu.Text = item.ToString();
+                }
+
+            }
+        }
 
     }
-
 }
+
+
