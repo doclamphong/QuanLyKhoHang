@@ -16,7 +16,7 @@ namespace QuanLyKhoHang
 
         public frmXuatHang(int idMaHD)
         {
-
+            CenterToParent();
             ctphieuxuat = new CT_PHIEUXUAT();
             ctphieuxuat.id_phieuxuat = idMaHD;
             InitializeComponent();
@@ -29,10 +29,11 @@ namespace QuanLyKhoHang
         {
             int id = ctphieuxuat.id_phieuxuat;
             int idhh = Convert.ToInt32(txtMaHang.Text);
+           
             using (DBKhoHangDataContext db = new DBKhoHangDataContext())
             {
                 CT_PHIEUXUAT ctpx1 = db.CT_PHIEUXUATs.Where(n => n.id_phieuxuat == id && n.id_hanghoa == idhh).SingleOrDefault();
-                HANGHOA sp = db.HANGHOAs.Single(n => n.id_hanghoa == idhh);
+                HANGHOA sp = db.HANGHOAs.Where(n => n.id_hanghoa == idhh).SingleOrDefault();
                 if (ctpx1 != null)
                 {
                     MessageBox.Show("Sản phẩm đã tồn tại trong đơn . Vui lòng chỉnh lại số lượng .");
@@ -43,7 +44,12 @@ namespace QuanLyKhoHang
                     string a = txtSoLuongMua.Text;
                     if (a == "")
                     {
+                        ctphieuxuat.id_hanghoa = idhh;
                         ctphieuxuat.soluongxuat = 1;
+                        sp.soluongton -= 1;
+                        db.CT_PHIEUXUATs.InsertOnSubmit(ctphieuxuat);
+                        db.SubmitChanges();
+                        MessageBox.Show("Thêm thành công");
                     }
                     else
                     {
@@ -55,6 +61,7 @@ namespace QuanLyKhoHang
                         }
                         else
                         {
+                            ctphieuxuat.id_hanghoa = idhh;
                             ctphieuxuat.soluongxuat = sl;
                             sp.soluongton -= sl;
                             db.CT_PHIEUXUATs.InsertOnSubmit(ctphieuxuat);

@@ -16,6 +16,7 @@ namespace QuanLyKhoHang
         int idNCC;
         public frmPN_ThemHang(int idPhieuNhap,int idncc)
         {
+            CenterToParent();
             ctPhieuNhap = new CT_PHIEUNHAP();
             ctPhieuNhap.id_phieunhap = idPhieuNhap;
             idNCC = idncc;
